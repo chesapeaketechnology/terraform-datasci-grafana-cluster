@@ -14,4 +14,4 @@ default_tags   = {
   SubSystem   = "Grafana"
   Role        = "FrontEnd"
   Environment = "DEV"
-}
+}∏

@@ -11,7 +11,6 @@ variable "virtual_network_name" {
 variable "location" {
   type        = string
   description = "Region to provision resources in"
-  default     = "usgovarizona"
 }
 
 variable "cluster_name" {

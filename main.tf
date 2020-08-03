@@ -26,6 +26,7 @@ module "grafana-data" {
   virtual_network_name = var.virtual_network_name
   environment          = var.environment
   default_tags         = var.default_tags
+  location             = var.location
   administrator_login = "grafana"
   administrator_password = random_password.grafana_data_password.result
   allow_access_from = [{
