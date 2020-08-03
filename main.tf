@@ -44,6 +44,7 @@ module "datasci-data" {
   cluster_name         = var.cluster_name
   virtual_network_name = var.virtual_network_name
   environment          = var.environment
+  location             = var.location
   default_tags         = var.default_tags
   administrator_login = "postgres"
   administrator_password = random_password.datasci_data_password.result
