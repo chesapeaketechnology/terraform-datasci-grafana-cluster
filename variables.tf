@@ -50,6 +50,19 @@ variable "subnet_end_address" {
   description = "The ending address in the subnet cidr"
 }
 
+variable "eventhub_key" {
+  type        = string
+  description = "The access key for eventhub"
+}
+variable "eventhub_namespace" {
+  type        = string
+  description = "The fully qualified eventhub namespace"
+}
+variable "eventhub_shared_access_policy" {
+  type        = string
+  description = "The name of the eventhub shared access policy used to authenticate to eventhub"
+}
+
 variable "default_tags" {
   type        = map(string)
   description = "Collection of default tags to apply to all resources"

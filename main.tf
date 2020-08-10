@@ -74,3 +74,21 @@ module "grafana-server" {
   grafana_db_password  = module.grafana-data.administrator_password
   subnet_cidrs         = [var.subnet_cidr]
 }
+
+module "grafana-integration" {
+  source               = "./modules/grafana-dataintegration"
+  resource_group_name  = var.resource_group_name
+  system_name          = var.cluster_name
+  virtual_network_name = var.virtual_network_name
+  location             = var.location
+  environment          = var.environment
+  default_tags         = var.default_tags
+  subnet_cidrs         = [var.subnet_cidr]
+  db_host = module.grafana-data.server_fqdn
+  db_name = "grafana"
+  db_password = module.grafana-data.administrator_password
+  db_user = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
+  eventhub_key = var.eventhub_key
+  eventhub_namespace = var.eventhub_namespace
+  eventhub_shared_access_policy = var.eventhub_shared_access_policy
+}
