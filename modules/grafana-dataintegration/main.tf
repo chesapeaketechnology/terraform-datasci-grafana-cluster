@@ -4,7 +4,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version = "=> 2.18"
+  version = "~> 2.18.0"
   features {}
   disable_terraform_partner_id = true
 }
@@ -71,21 +71,21 @@ resource "azurerm_container_group" "gfi_container_group" {
     memory = "0.5"
 
     environment_variables = {
-      GDI_TOPIC=each.value["topic"]
-      GDI_MESSAGE_TYPE=each.value["message_type"]
-      GDI_MESSAGE_VERSION=each.value["message_version"]
-      GDI_CONSUMER_GROUP="frontend"
-      GDI_KEY="${element(matchkeys(var.eventhub_keys, var.topics, each.value["topic"])), 0)}"
-      GDI_NAMESPACE=var.eventhub_namespace
-      GDI_SHARED_ACCESS_POLICY="${element(matchkeys(var.eventhub_shared_access_policies, var.topics, each.value["topic"]), 0)}"
-      GDI_DB_HOST=var.db_host
-      GDI_DB_PORT=var.db_port
-      GDI_DB_DATABASE=var.db_name
-      GDI_DB_USER=var.db_user
-      GDI_DB_PASSWORD=var.db_password
-      GDI_DB_SCHEMA=var.db_schema
-      GDI_BUFFER_SIZE=each.value["buffer_size"]
-      LOG_LEVEL=each.value["log_level"]
+      GDI_TOPIC=each.value["topic"],
+      GDI_MESSAGE_TYPE=each.value["message_type"],
+      GDI_MESSAGE_VERSION=each.value["message_version"],
+      GDI_CONSUMER_GROUP="frontend",
+      GDI_KEY=element(matchkeys(var.eventhub_keys, var.topics, each.value["topic"]), 0),
+      GDI_NAMESPACE=var.eventhub_namespace,
+      GDI_SHARED_ACCESS_POLICY=element(matchkeys(var.eventhub_shared_access_policies, var.topics, each.value["topic"]), 0),
+      GDI_DB_HOST=var.db_host,
+      GDI_DB_PORT=var.db_port,
+      GDI_DB_DATABASE=var.db_name,
+      GDI_DB_USER=var.db_user,
+      GDI_DB_PASSWORD=var.db_password,
+      GDI_DB_SCHEMA=var.db_schema,
+      GDI_BUFFER_SIZE=each.value["buffer_size"],
+      LOG_LEVEL=each.value["log_level"],
 
       //      GDI_CHECKPOINT_STORE_CONNECTION=var.
       //      GDI_CHECKPOINT_STORE_CONTAINER=var.
