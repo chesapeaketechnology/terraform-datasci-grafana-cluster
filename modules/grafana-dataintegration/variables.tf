@@ -75,18 +75,36 @@ variable "db_schema" {
   description = "The database schema being used for storing data points."
   default     = "public"
 }
-variable "eventhub_key" {
-  type        = string
-  description = "The access key for eventhub"
+
+variable "topics"{
+  type        = set(string)
+  description = "List of eventhubs to create under this eventhubs space"
+}
+
+variable "consumers" {
+  type        = list(object({
+    topic           = string
+    message_type     = string
+    message_version  = string
+    buffer_size     = number
+    log_level       = string
+  }))
+  description   = "A list of frontend topic consumers"
+}
+
+variable "eventhub_keys" {
+  type        = list(string)
+  description = "The access keys for eventhub; ordered the same as the topics."
 }
 variable "eventhub_namespace" {
   type        = string
   description = "The fully qualified eventhub namespace"
 }
-variable "eventhub_shared_access_policy" {
-  type        = string
-  description = "The name of the eventhub shared access policy used to authenticate to eventhub"
+variable "eventhub_shared_access_policies" {
+  type        = list(string)
+  description = "A list of names of the eventhub shared access policy used to authenticate to eventhub; ordered the same as the topics."
 }
+
 variable "checkpoint_store_connection_str" {
   type        = string
   description = "[Optional] The azure blob container connection string is checkpoiint storage is being used."
@@ -96,14 +114,4 @@ variable "checkpoint_store_container" {
   type        = string
   description = "[Optional] The azure blob container to be used for eventhub checkpoint storage."
   default     = ""
-}
-variable "buffer_size" {
-  type        = string
-  description = "Controls the number of messages that are buffered before writing to the database"
-  default     = "1"
-}
-variable "log_level" {
-  type        = string
-  description = "The python loggin level to use at runtime. Must be DEBUG, INFO, WARN, ERROR, or FATAL"
-  default     = "INFO"
 }

@@ -64,27 +64,28 @@ resource "azurerm_container_group" "gfi_container_group" {
 
   # Grafana Server
   container {
-    name   = "gfi-lte-consumer"
+    foreach       = var.consumers
+    name   =  join("-", [var.system_name, var.environment, "gfi", each.value["topic"], "consumer"])
     image  = "chesapeaketechnology/grafana-dataintegration:0.1.0"
-    cpu    = "1.0"
-    memory = "1.0"
+    cpu    = "0.5"
+    memory = "0.5"
 
     environment_variables = {
-      GDI_TOPIC="lte_message"
-      GDI_MESSAGE_TYPE="LteRecord"
-      GDI_MESSAGE_VERSION="~=0.1.0"
+      GDI_TOPIC=each.value["topic"]
+      GDI_MESSAGE_TYPE=each.value["message_type"]
+      GDI_MESSAGE_VERSION=each.value["message_version"]
       GDI_CONSUMER_GROUP="frontend"
-      GDI_KEY=var.eventhub_key
+      GDI_KEY=element(matchkeys(var.eventhub_keys, var.topics, each.value["topic"])), 0)
       GDI_NAMESPACE=var.eventhub_namespace
-      GDI_SHARED_ACCESS_POLICY=var.eventhub_shared_access_policy
+      GDI_SHARED_ACCESS_POLICY=element(matchkeys(var.eventhub_shared_access_policies, var.topics, each.value["topic"]), 0)
       GDI_DB_HOST=var.db_host
       GDI_DB_PORT=var.db_port
       GDI_DB_DATABASE=var.db_name
       GDI_DB_USER=var.db_user
       GDI_DB_PASSWORD=var.db_password
       GDI_DB_SCHEMA=var.db_schema
-      GDI_BUFFER_SIZE=var.buffer_size
-      LOG_LEVEL=var.log_level
+      GDI_BUFFER_SIZE=each.value["buffer_size"]
+      LOG_LEVEL=each.value["log_level"]
 
       //      GDI_CHECKPOINT_STORE_CONNECTION=var.
       //      GDI_CHECKPOINT_STORE_CONTAINER=var.

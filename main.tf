@@ -88,7 +88,9 @@ module "grafana-integration" {
   db_name = "grafana"
   db_password = module.grafana-data.administrator_password
   db_user = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
-  eventhub_key = var.eventhub_key
   eventhub_namespace = var.eventhub_namespace
-  eventhub_shared_access_policy = var.eventhub_shared_access_policy
+  eventhub_keys = var.eventhub_keys
+  eventhub_shared_access_policies = var.eventhub_shared_access_policies
+  consumers = var.consumers
+  topics = var.topics
 }

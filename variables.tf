@@ -50,17 +50,33 @@ variable "subnet_end_address" {
   description = "The ending address in the subnet cidr"
 }
 
-variable "eventhub_key" {
-  type        = string
-  description = "The access key for eventhub"
+variable "topics"{
+  type        = set(string)
+  description = "List of eventhubs to create under this eventhubs space"
+}
+
+variable "consumers" {
+  type        = list(object({
+    topic           = string
+    message_type     = string
+    message_version  = string
+    buffer_size     = number
+    log_level       = string
+  }))
+  description   = "A list of frontend topic consumers"
+}
+
+variable "eventhub_keys" {
+  type        = list(string)
+  description = "The access keys for eventhub; ordered the same as the topics."
 }
 variable "eventhub_namespace" {
   type        = string
   description = "The fully qualified eventhub namespace"
 }
-variable "eventhub_shared_access_policy" {
-  type        = string
-  description = "The name of the eventhub shared access policy used to authenticate to eventhub"
+variable "eventhub_shared_access_policies" {
+  type        = list(string)
+  description = "A list of names of the eventhub shared access policy used to authenticate to eventhub; ordered the same as the topics."
 }
 
 variable "default_tags" {
