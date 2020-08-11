@@ -75,9 +75,9 @@ resource "azurerm_container_group" "gfi_container_group" {
       GDI_MESSAGE_TYPE=each.value["message_type"]
       GDI_MESSAGE_VERSION=each.value["message_version"]
       GDI_CONSUMER_GROUP="frontend"
-      GDI_KEY=element(matchkeys(var.eventhub_keys, var.topics, each.value["topic"])), 0)
+      GDI_KEY="${element(matchkeys(var.eventhub_keys, var.topics, each.value["topic"])), 0)}"
       GDI_NAMESPACE=var.eventhub_namespace
-      GDI_SHARED_ACCESS_POLICY=element(matchkeys(var.eventhub_shared_access_policies, var.topics, each.value["topic"]), 0)
+      GDI_SHARED_ACCESS_POLICY="${element(matchkeys(var.eventhub_shared_access_policies, var.topics, each.value["topic"]), 0)}"
       GDI_DB_HOST=var.db_host
       GDI_DB_PORT=var.db_port
       GDI_DB_DATABASE=var.db_name
