@@ -66,7 +66,7 @@ resource "azurerm_container_group" "gfi_container_group" {
   dynamic container {
     for_each = var.consumers
     content {
-      name = join("-", ["gfi", replace(container.value["topic"], '_', '-'), "consumer"])
+      name = join("-", ["gfi", replace(container.value["topic"], "_", "-"), "consumer"])
       image = "chesapeaketechnology/grafana-dataintegration:0.1.0"
       cpu = "0.5"
       memory = "0.5"
