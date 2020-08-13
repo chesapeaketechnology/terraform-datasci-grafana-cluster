@@ -35,7 +35,7 @@ variable "grafana_port" {
 }
 
 variable "subnet_cidrs" {
-  type        = string
+  type        = list(string)
   description = "The subnet CIDRs to use for the Grafana servers"
   default     = "10.0.11.0/24"
 }
