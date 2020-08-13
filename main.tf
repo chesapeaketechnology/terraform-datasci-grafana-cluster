@@ -76,7 +76,7 @@ module "grafana-server" {
 }
 
 module "grafana-integration" {
-  source               = "./modules/grafana-dataintegration"
+  source               = "github.com/chesapeaketechnology/grafana-dataintegration/terraform"
   resource_group_name  = var.resource_group_name
   system_name          = var.cluster_name
   virtual_network_name = var.virtual_network_name
@@ -91,6 +91,5 @@ module "grafana-integration" {
   eventhub_namespace = var.eventhub_namespace
   eventhub_keys = var.eventhub_keys
   eventhub_shared_access_policies = var.eventhub_shared_access_policies
-  consumers = var.consumers
   topics = var.topics
 }
