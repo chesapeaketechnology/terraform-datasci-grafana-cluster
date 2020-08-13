@@ -34,8 +34,8 @@ resource "azurerm_postgresql_server" "data-pg" {
   ssl_minimal_tls_version_enforced = "TLS1_2"
 }
 
-resource "azurerm_postgresql_database" "snet-db" {
-  name                = "snet"
+resource "azurerm_postgresql_database" "grafana-db" {
+  name                = "grafana"
   resource_group_name = data.azurerm_resource_group.data_resource_group.name
   server_name         = azurerm_postgresql_server.data-pg.name
   charset             = "UTF8"
