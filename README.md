@@ -1,5 +1,5 @@
-# grafana-fe
-Houses the code related to building and deploying Grafana 
+# Grafana Terraform Cluster
+Provisions a set of containers and services to support integration with the datasci pipeline. 
 
 ![Grafana Cluster Architecture](./GrafanaCluster.png "Grafana Architecture")
 

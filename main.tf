@@ -72,7 +72,7 @@ module "grafana-server" {
   grafana_db_ssl_mode  = "require"
   grafana_db_username  = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
   grafana_db_password  = module.grafana-data.administrator_password
-  subnet_cidrs         = [var.subnet_cidr]
+  subnet_cidrs         = var.subnet_cidrs
 }
 
 module "grafana-integration" {
