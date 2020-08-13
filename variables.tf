@@ -55,17 +55,6 @@ variable "topics"{
   description = "List of eventhubs to create under this eventhubs space"
 }
 
-variable "consumers" {
-  type        = list(object({
-    topic           = string
-    message_type     = string
-    message_version  = string
-    buffer_size     = number
-    log_level       = string
-  }))
-  description   = "A list of frontend topic consumers"
-}
-
 variable "eventhub_keys" {
   type        = list(string)
   description = "The access keys for eventhub; ordered the same as the topics."
