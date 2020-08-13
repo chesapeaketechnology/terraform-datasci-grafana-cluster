@@ -83,7 +83,7 @@ module "grafana-integration" {
   location             = var.location
   environment          = var.environment
   default_tags         = var.default_tags
-  subnet_cidrs         = [var.subnet_cidr]
+  subnet_cidrs         = var.subnet_cidrs
   db_host = module.grafana-data.server_fqdn
   db_name = "grafana"
   db_password = module.grafana-data.administrator_password
