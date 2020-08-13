@@ -25,7 +25,7 @@ output "administrator_password" {
 
 output "database_ids" {
   description = "The list of all database resource ids"
-  value       = [azurerm_postgresql_database.snet-db.*.id]
+  value       = [azurerm_postgresql_database.grafana-db.*.id]
 }
 
 output "firewall_rule_ids" {
