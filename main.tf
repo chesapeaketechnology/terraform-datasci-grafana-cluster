@@ -86,8 +86,8 @@ module "grafana-integration" {
   network_profile_id   = var.network_profile_id
   db_host              = module.grafana-data.server_fqdn
   db_name              = "grafana"
-  db_password          = module.grafana-data.administrator_password
-  db_user              = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
+  db_password          = module.datasci-data.administrator_password
+  db_user              = "${module.datasci-data.administrator_login}@${module.datasci-data.server_name}"
   eventhub_namespace   = var.eventhub_namespace
   eventhub_keys        = var.eventhub_keys
   eventhub_shared_access_policies = var.eventhub_shared_access_policies
