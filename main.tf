@@ -84,7 +84,7 @@ module "grafana-integration" {
   environment          = var.environment
   default_tags         = var.default_tags
   network_profile_id   = var.network_profile_id
-  db_host              = module.grafana-data.server_fqdn
+  db_host              = module.datasci-data.server_fqdn
   db_name              = "grafana"
   db_password          = module.datasci-data.administrator_password
   db_user              = "${module.datasci-data.administrator_login}@${module.datasci-data.server_name}"
