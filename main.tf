@@ -72,7 +72,7 @@ module "grafana-server" {
   grafana_db_ssl_mode  = "require"
   grafana_db_username  = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
   grafana_db_password  = module.grafana-data.administrator_password
-  subnet_cidrs         = var.subnet_cidrs
+  network_profile_id   = var.network_profile_id
 }
 
 module "grafana-integration" {
@@ -83,13 +83,13 @@ module "grafana-integration" {
   location             = var.location
   environment          = var.environment
   default_tags         = var.default_tags
-  subnet_cidrs         = var.subnet_cidrs
-  db_host = module.grafana-data.server_fqdn
-  db_name = "grafana"
-  db_password = module.grafana-data.administrator_password
-  db_user = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
-  eventhub_namespace = var.eventhub_namespace
-  eventhub_keys = var.eventhub_keys
+  network_profile_id   = var.network_profile_id
+  db_host              = module.grafana-data.server_fqdn
+  db_name              = "grafana"
+  db_password          = module.grafana-data.administrator_password
+  db_user              = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
+  eventhub_namespace   = var.eventhub_namespace
+  eventhub_keys        = var.eventhub_keys
   eventhub_shared_access_policies = var.eventhub_shared_access_policies
-  topics = var.topics
+  topics               = var.topics
 }

@@ -34,9 +34,9 @@ variable "grafana_port" {
   default=3000
 }
 
-variable "subnet_cidrs" {
-  type        = list(string)
-  description = "The subnet CIDRs to use for the Grafana servers"
+variable "network_profile_id" {
+  type        = string
+  description = "Name of the network profile in which to create the container"
 }
 
 variable "subnet_start_address" {
