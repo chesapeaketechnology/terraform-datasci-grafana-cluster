@@ -76,22 +76,19 @@ module "grafana-server" {
 }
 
 module "grafana-integration" {
-  source               = "github.com/chesapeaketechnology/grafana-dataintegration/terraform"
-  resource_group_name  = var.resource_group_name
-  system_name          = var.cluster_name
-  virtual_network_name = var.virtual_network_name
-  location             = var.location
-  environment          = var.environment
-  default_tags         = var.default_tags
-  network_profile_id   = var.network_profile_id
-  db_host              = module.datasci-data.server_fqdn
-  db_name              = "grafana"
-  db_password          = module.datasci-data.administrator_password
-  db_user              = "${module.datasci-data.administrator_login}@${module.datasci-data.server_name}"
-  eventhub_namespace   = var.eventhub_namespace
-  eventhub_keys        = var.eventhub_keys
-  eventhub_shared_access_policies = var.eventhub_shared_access_policies
-  topics               = var.topics
-  consul_server        = var.consul_server
-  system_topics        = var.system_topics
+  source                = "github.com/chesapeaketechnology/grafana-dataintegration/terraform"
+  resource_group_name   = var.resource_group_name
+  system_name           = var.cluster_name
+  virtual_network_name  = var.virtual_network_name
+  location              = var.location
+  environment           = var.environment
+  default_tags          = var.default_tags
+  network_profile_id    = var.network_profile_id
+  db_host               = module.datasci-data.server_fqdn
+  db_name               = "grafana"
+  db_password           = module.datasci-data.administrator_password
+  db_user               = "${module.datasci-data.administrator_login}@${module.datasci-data.server_name}"
+  consul_server         = var.consul_server
+  system_topic_settings = var.system_topic_settings
+  topic_settings        = var.topic_settings
 }
