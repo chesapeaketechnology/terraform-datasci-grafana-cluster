@@ -93,4 +93,5 @@ module "grafana-integration" {
   eventhub_shared_access_policies = var.eventhub_shared_access_policies
   topics               = var.topics
   consul_server        = var.consul_server
+  system_topics        = var.system_topics
 }
