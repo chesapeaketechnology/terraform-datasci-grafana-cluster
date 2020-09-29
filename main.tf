@@ -2,6 +2,14 @@ provider "azurerm" {
   version = "~> 2.18.0"
   features {}
   disable_terraform_partner_id = true
+  skip_provider_registration = true
+}
+
+resource "null_resource" "grafana_dependency" {
+  depends_on = [var.grafana_depends_on]
+  triggers   = {
+    value = "${length(var.grafana_depends_on)}"
+  }
 }
 
 resource "random_password" "grafana_data_password" {
@@ -23,7 +31,6 @@ module "grafana-data" {
   source               = "./modules/grafana-data"
   resource_group_name  = var.resource_group_name
   cluster_name         = var.cluster_name
-  virtual_network_name = var.virtual_network_name
   environment          = var.environment
   default_tags         = var.default_tags
   location             = var.location
@@ -42,7 +49,6 @@ module "datasci-data" {
   source               = "./modules/datasci-data"
   resource_group_name  = var.resource_group_name
   cluster_name         = var.cluster_name
-  virtual_network_name = var.virtual_network_name
   environment          = var.environment
   location             = var.location
   default_tags         = var.default_tags
@@ -61,7 +67,6 @@ module "grafana-server" {
   source               = "github.com/chesapeaketechnology/terraform-grafana"
   resource_group_name  = var.resource_group_name
   system_name          = var.cluster_name
-  virtual_network_name = var.virtual_network_name
   location             = var.location
   environment          = var.environment
   default_tags         = var.default_tags
@@ -79,7 +84,6 @@ module "grafana-integration" {
   source                = "github.com/chesapeaketechnology/grafana-dataintegration/terraform"
   resource_group_name   = var.resource_group_name
   system_name           = var.cluster_name
-  virtual_network_name  = var.virtual_network_name
   location              = var.location
   environment           = var.environment
   default_tags          = var.default_tags
