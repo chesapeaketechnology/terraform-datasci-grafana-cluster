@@ -8,11 +8,6 @@ variable "grafana_depends_on" {
   description = "Variable to force this module to wait on its dependencies"
 }
 
-variable "virtual_network_name" {
-  type        = string
-  description = "Name of Azure virtual network"
-}
-
 variable "location" {
   type        = string
   description = "Region to provision resources in"
