@@ -2,15 +2,11 @@ provider "azurerm" {
   version = "~> 2.0"
   features {}
   disable_terraform_partner_id = true
+  skip_provider_registration = true
 }
 
 data "azurerm_resource_group" "gdata_resource_group" {
   name = var.resource_group_name
-}
-
-data "azurerm_virtual_network" "gdata_net" {
-  name                = var.virtual_network_name
-  resource_group_name = data.azurerm_resource_group.gdata_resource_group.name
 }
 
 resource "azurerm_postgresql_server" "gdata-pg" {

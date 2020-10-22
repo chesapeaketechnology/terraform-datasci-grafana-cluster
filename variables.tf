@@ -3,9 +3,9 @@ variable "resource_group_name" {
   description = "Azure resource group in which to deploy"
 }
 
-variable "virtual_network_name" {
-  type        = string
-  description = "Name of Azure virtual network"
+variable "grafana_depends_on" {
+  type = any
+  description = "Variable to force this module to wait on its dependencies"
 }
 
 variable "location" {
