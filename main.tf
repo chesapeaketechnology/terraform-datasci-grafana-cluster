@@ -58,7 +58,7 @@ module "datasci-data" {
 }
 
 module "grafana-server" {
-  source               = "github.com/chesapeaketechnology/terraform-grafana"
+  source               = "github.com/chesapeaketechnology/terraform-grafana?ref=v0.9"
   resource_group_name  = var.resource_group_name
   system_name          = var.cluster_name
   virtual_network_name = var.virtual_network_name
@@ -73,6 +73,11 @@ module "grafana-server" {
   grafana_db_username  = "${module.grafana-data.administrator_login}@${module.grafana-data.server_name}"
   grafana_db_password  = module.grafana-data.administrator_password
   network_profile_id   = var.network_profile_id
+  datasci_db_host      = "${module.datasci-data.server_fqdn}:5432"
+  datasci_db_password  = module.datasci-data.administrator_password
+  datasci_db_ssl_mode  = "require"
+  datasci_db_type      = "postgres"
+  datasci_db_username  = "${module.datasci-data.administrator_login}@${module.datasci-data.server_fqdn}"
 }
 
 module "grafana-integration" {
