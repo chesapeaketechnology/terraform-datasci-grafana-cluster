@@ -80,3 +80,8 @@ variable "consul_server" {
   type        = string
   description = "IP address of a Consul server to join"
 }
+
+variable "prometheus_server" {
+  type        = string
+  description = "The host/IP address of Prometheus server"
+}

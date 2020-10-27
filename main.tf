@@ -83,6 +83,7 @@ module "grafana-server" {
   datasci_db_ssl_mode  = "require"
   datasci_db_type      = "postgres"
   datasci_db_username  = "${module.datasci-data.administrator_login}@${module.datasci-data.server_fqdn}"
+  prometheus_server    = var.prometheus_server
 }
 
 module "grafana-integration" {
