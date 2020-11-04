@@ -87,7 +87,7 @@ module "grafana-server" {
 }
 
 module "grafana-integration" {
-  source                = "github.com/chesapeaketechnology/grafana-dataintegration/tree/v0.2.8/terraform"
+  source                = "github.com/chesapeaketechnology/grafana-dataintegration.git//terraform?ref=v0.2.8"
   resource_group_name   = var.resource_group_name
   system_name           = var.cluster_name
   location              = var.location
