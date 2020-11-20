@@ -83,8 +83,8 @@ module "grafana-server" {
   datasci_db_ssl_mode  = "require"
   datasci_db_type      = "postgres"
   datasci_db_username  = "${module.datasci-data.administrator_login}@${module.datasci-data.server_fqdn}"
+  consul_server        = var.consul_server
   prometheus_server    = var.prometheus_server
-  consul_share_name    = var.consul_share_name
   consul_account_name  = var.consul_account_name
   consul_account_key   = var.consul_account_key
 }

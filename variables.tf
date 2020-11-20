@@ -86,11 +86,6 @@ variable "prometheus_server" {
   description = "The host/IP address of Prometheus server"
 }
 
-variable "consul_share_name" {
-  type        = string
-  description = "The consul share name"
-}
-
 variable "consul_account_name" {
   type        = string
   description = "The consul share storage account name"
