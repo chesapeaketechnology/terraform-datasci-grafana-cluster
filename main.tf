@@ -64,7 +64,7 @@ module "datasci-data" {
 }
 
 module "grafana-server" {
-  source               = "github.com/chesapeaketechnology/terraform-grafana?ref=v0.9.1"
+  source               = "github.com/chesapeaketechnology/terraform-grafana?ref=v0.10"
   resource_group_name  = var.resource_group_name
   system_name          = var.cluster_name
   location             = var.location
@@ -84,6 +84,9 @@ module "grafana-server" {
   datasci_db_type      = "postgres"
   datasci_db_username  = "${module.datasci-data.administrator_login}@${module.datasci-data.server_fqdn}"
   prometheus_server    = var.prometheus_server
+  consul_share_name    = var.consul_share_name
+  consul_account_name  = var.consul_account_name
+  consul_account_key   = var.consul_account_key
 }
 
 module "grafana-integration" {
