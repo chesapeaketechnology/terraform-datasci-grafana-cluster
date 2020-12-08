@@ -29,6 +29,9 @@ module "grafana" {
 
 ## Changelog
 
+##### [1.0](https://github.com/chesapeaketechnology/terraform-datasci-grafana-cluster/releases/tag/v1.0) - 2020-12-08
+ * Updated to v1.0 of Terraform Grafana.
+
 ##### [0.2.0]() - 2020-08-17
  * Integrated into the datasci pipeline
  

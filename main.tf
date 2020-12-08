@@ -64,7 +64,7 @@ module "datasci-data" {
 }
 
 module "grafana-server" {
-  source               = "github.com/chesapeaketechnology/terraform-grafana?ref=v0.10"
+  source               = "github.com/chesapeaketechnology/terraform-grafana?ref=v1.0"
   resource_group_name  = var.resource_group_name
   system_name          = var.cluster_name
   location             = var.location
